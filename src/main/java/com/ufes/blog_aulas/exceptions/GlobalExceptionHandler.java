@@ -38,4 +38,17 @@ public class GlobalExceptionHandler
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(DataViolationException.class)
+    public ResponseEntity<?> handleDataViolationException(DataViolationException ex)
+    {
+        Map<String, Object> response = new LinkedHashMap<>();
+
+        response.put("timestamp", LocalDateTime.now(ZoneId.systemDefault()));
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Erro de violação de dados, bad request.");
+        response.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }
