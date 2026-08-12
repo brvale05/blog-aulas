@@ -25,4 +25,17 @@ public class GlobalExceptionHandler
 
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleResourceNotFoundEXception(ResourceNotFoundException ex)
+    {
+        Map<String, Object> response = new LinkedHashMap<>();
+
+        response.put("timestamp", LocalDateTime.now(ZoneId.systemDefault()));
+        response.put("status", HttpStatus.NOT_FOUND.value());
+        response.put("error", "Entidade não encontrada.");
+        response.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 }
