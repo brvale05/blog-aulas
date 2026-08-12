@@ -1,11 +1,13 @@
-package com.ufes.blog_aulas.dto.request;
+package com.ufes.blog_aulas.dto.response;
 
 import java.io.Serializable;
 
 /**
  * DTO for {@link com.ufes.blog_aulas.domain.Professor}
  */
-public record ProfessorCreateDTO(
+public record ProfessorResponseDTO(
+
+        Long id,
 
         String name,
 

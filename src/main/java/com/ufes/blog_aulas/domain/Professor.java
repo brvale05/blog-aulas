@@ -13,9 +13,13 @@ public class Professor
     @Column(nullable = false, length = 80)
     private String name;
 
-    public Professor(String name)
+    @Column(nullable = false, unique = true, length = 80)
+    private String email;
+
+    public Professor(String name, String email)
     {
         this.name = name;
+        this.email = email;
     }
 
     public Professor()
@@ -35,5 +39,15 @@ public class Professor
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 }
