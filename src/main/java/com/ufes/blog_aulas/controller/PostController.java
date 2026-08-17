@@ -34,4 +34,12 @@ public class PostController
 
         return ResponseEntity.status(HttpStatus.CREATED).body(postResponseDTO);
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<PostResponseDTO> getPostById(@PathVariable Long id)
+    {
+        PostResponseDTO postResponseDTO = postService.getPostById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(postResponseDTO);
+    }
 }

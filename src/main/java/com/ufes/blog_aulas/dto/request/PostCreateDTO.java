@@ -1,5 +1,7 @@
 package com.ufes.blog_aulas.dto.request;
 
+import com.ufes.blog_aulas.enums.SubjectDifficulty;
+
 import java.io.Serializable;
 
 /**
@@ -13,7 +15,9 @@ public record PostCreateDTO(
 
         Long professorId,
 
-        Long subjectId
+        Long subjectId,
+
+        SubjectDifficulty difficulty
 
 ) implements Serializable
 {

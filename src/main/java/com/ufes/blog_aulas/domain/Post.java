@@ -1,5 +1,6 @@
 package com.ufes.blog_aulas.domain;
 
+import com.ufes.blog_aulas.enums.SubjectDifficulty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -39,7 +40,10 @@ public class Post
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    public Post(Subject subject, Professor professor, Integer rating, String content)
+    @Column(nullable = false)
+    private SubjectDifficulty difficulty;
+
+    public Post(Subject subject, Professor professor, Integer rating, String content, SubjectDifficulty difficulty)
     {
         this.createdAt = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
         this.comments = new ArrayList<>();
@@ -47,6 +51,7 @@ public class Post
         this.professor = professor;
         this.rating = rating;
         this.content = content;
+        this.difficulty = difficulty;
     }
 
     public Post()
@@ -106,6 +111,16 @@ public class Post
     public LocalDateTime getCreatedAt()
     {
         return createdAt;
+    }
+
+    public SubjectDifficulty getDifficulty()
+    {
+        return difficulty;
+    }
+
+    public void setDifficulty(SubjectDifficulty difficulty)
+    {
+        this.difficulty = difficulty;
     }
 
     public void addComment(Comment c)

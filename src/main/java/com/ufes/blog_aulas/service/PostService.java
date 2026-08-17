@@ -45,7 +45,7 @@ public class PostService
         if (rating > 5 || rating < 0)
             throw new DataViolationException("Avaliação da disciplina não pode ser maior que 5 ou menor que 0");
 
-        Post post = new Post(subject, professor, rating, createDTO.content());
+        Post post = new Post(subject, professor, rating, createDTO.content(), createDTO.difficulty());
 
         return toResponse(postRepository.save(post));
     }
@@ -106,7 +106,8 @@ public class PostService
                 professorResponse,
                 subjectResponse,
                 comments,
-                post.getCreatedAt()
+                post.getCreatedAt(),
+                post.getDifficulty()
         );
     }
 
@@ -115,6 +116,7 @@ public class PostService
         if (comment == null) return null;
 
         CommentResponseDTO father = null;
+        // É comentário filho
         if (comment.getFatherComment() != null)
         {
             father = new CommentResponseDTO(

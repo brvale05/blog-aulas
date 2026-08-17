@@ -1,5 +1,7 @@
 package com.ufes.blog_aulas.dto.response;
 
+import com.ufes.blog_aulas.enums.SubjectDifficulty;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +19,9 @@ public record PostResponseDTO(
 
         List<CommentResponseDTO> comments,
 
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+
+        SubjectDifficulty difficulty
 
 )
 {
