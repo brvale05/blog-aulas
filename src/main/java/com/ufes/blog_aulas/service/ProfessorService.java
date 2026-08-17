@@ -4,6 +4,7 @@ import com.ufes.blog_aulas.domain.Professor;
 import com.ufes.blog_aulas.dto.request.ProfessorCreateDTO;
 import com.ufes.blog_aulas.dto.response.ProfessorResponseDTO;
 import com.ufes.blog_aulas.exceptions.ResourceAlreadyExistsException;
+import com.ufes.blog_aulas.exceptions.ResourceNotFoundException;
 import com.ufes.blog_aulas.repository.ProfessorRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,12 @@ public class ProfessorService
         return toResponse(professorRepository.save(professor));
     }
 
-    private ProfessorResponseDTO toResponse(Professor professor)
+    public Professor getProfessorEntityById(Long id)
+    {
+        return professorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Nenhum docente com esse ID foi encontrado"));
+    }
+
+    public ProfessorResponseDTO toResponse(Professor professor)
     {
         return new ProfessorResponseDTO(
                 professor.getId(),
