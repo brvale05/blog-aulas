@@ -1,6 +1,7 @@
 package com.ufes.blog_aulas.service;
 
 import com.ufes.blog_aulas.domain.Comment;
+import com.ufes.blog_aulas.exceptions.ResourceNotFoundException;
 import com.ufes.blog_aulas.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class CommentService
 
     public Comment getCommentEntityById(Long id)
     {
-        return commentRepository.findById(id).orElseThrow(() -> new com.ufes.blog_aulas.exceptions.ResourceNotFoundException("Nenhum comentário com esse ID foi encontrado"));
+        return commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Nenhum comentário com esse ID foi encontrado"));
     }
 
     public void save(Comment comment)
